@@ -36,11 +36,14 @@ class CustomePresentationAnimator: NSObject, UIViewControllerAnimatedTransitioni
         }
         
         if isPresenting {
-            toViewInitialFrame.origin = CGPoint(x: containerView.bounds.minX, y: containerView.bounds.maxY)
+//            toViewInitialFrame.origin = CGPoint(x: containerView.bounds.minX, y: containerView.bounds.maxY)
+            
+            toViewInitialFrame.origin = CGPoint(x: (containerView.frame.width - toViewFinalFrame.size.width) * 0.5, y: containerView.bounds.maxY)
             toViewInitialFrame.size = toViewFinalFrame.size
             toV?.frame = toViewInitialFrame
         } else {
-            fromViewFinalFrame = fromV!.frame.offsetBy(dx: 0, dy: fromV!.frame.height)
+//            fromViewFinalFrame = fromV!.frame.offsetBy(dx: 0, dy: fromV!.frame.height)
+            fromViewFinalFrame = fromV!.frame.offsetBy(dx: 0, dy: (containerView.frame.height - fromV!.frame.height) * 0.5 + fromV!.frame.height)
         }
         
         let duration = self.transitionDuration(using: transitionContext)
